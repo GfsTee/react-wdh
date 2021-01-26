@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import NavigationMobile from './components/NavigationMobile'
+import About from './components/About'
+import Home from './components/Home'
+import Contact from './components/Contact'
+import Blog from './components/Blog'
+import BlogItem from './components/BlogItem'
+import Counter from './components/Counter'
+import Error from './components/Error'
+import './App.css'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavigationMobile />
+      {/* <Navigation></Navigation> */}
+      <Switch>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/about" exact>
+          <About />
+        </Route>
+        <Route path="/contact" component={Contact} exact />
+        <Route path="/counter" component={Counter} exact />
+        <Route path="/blog" component={Blog} exact />
+        <Route path="/blog/:test" component={BlogItem} />
+
+
+        <Route component={Error} />
+      </Switch>
+
+    </ Router>
   );
 }
 
